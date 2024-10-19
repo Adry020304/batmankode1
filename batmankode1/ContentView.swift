@@ -7,32 +7,36 @@
 
 import SwiftUI
         
-struct Link_Intro: View {
-    var body: some View {
-       
-        VStack(spacing: 20){
-            Text("Link")
-            Text("introduction")
-                .foregroundStyle(.gray)
-            
-            Text("im very happy for everything and my life its not easy im tired for everything")
-                .background(Color.purple)
-                .padding()
-            
-            
-            Link("Go to Apple", destination: URL(string: "https//www.apple.com")!)
-            Link("Call Now", destination: URL(string: "tel:8005551234")!)
-            Link("", destination: URL(string: "")!)
-            
-            
-            
-            }
-        .font(.title)
+struct List_MoveRow: View {
     
+    @State var data = ["to hit edition","practice","Grocery","Get Tickects","Clean house"]
+    var body: some View {
+        NavigationStack{
+            List {
+                ForEach(data,id: \.self) { datum in
+                    Text(datum).font(Font.system(size: 24)).padding()
+                        .deleteDisabled((datum == "clean house"))
+                }
+                
+                .onDelete{ offsets in
+                    data.remove(atOffsets: offsets)
+                    
+                    
+                    
+                }
+            }
+                .navigationTitle("to do")
+                .toolbar {
+                    ToolbarItem{EditButton()}
+                }
+                .listStyle(.plain)
+            }
+
+    .font(.title)
     }
 }
     #Preview{
-        Link_Intro()
+        List_MoveRow()
         }
    
 
