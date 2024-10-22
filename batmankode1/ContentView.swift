@@ -7,30 +7,21 @@
 
 import SwiftUI
         
-struct List_MoveRow: View {
+struct List_Selection_Single: View {
+    @State private var data = ["Practice Coding","Big project","Simple project","strong project","My bussiness","Clean house","Real project"]
+    @State private var selection : string?
     
-    @State var data = ["to hit edition","practice","Grocery","Get Tickects","Clean house"]
-    var body: some View {
-        NavigationStack{
-            List {
-                ForEach(data,id: \.self) { datum in
-                    Text(datum).font(Font.system(size: 24)).padding()
-                        .deleteDisabled((datum == "clean house"))
-                }
-                
-                .onDelete{ offsets in
-                    data.remove(atOffsets: offsets)
-                    
-                    
-                    
-                }
-            }
-                .navigationTitle("to do")
-                .toolbar {
-                    ToolbarItem{EditButton()}
-                }
-                .listStyle(.plain)
-            }
+    var body : some View {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     .font(.title)
     }
