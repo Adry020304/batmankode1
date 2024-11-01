@@ -7,36 +7,37 @@
 
 import SwiftUI
         
-struct Parent: Identifiable {
+struct List_ListStyle_Automatic: View {
     
-    var id = UUID()
-    var name = ""
-    var children: [Parent]?
-}
-struct List_WithChildren: View {
-    var parents = [Parent(name: "Mark",
-                          children: [Parent(name: "Beatriz")]),
-                   Parent(name: "Rodrigo",
-                   children: [Parent(name:"Kai"),Parent(name:"Brendan"),
-                              Parent(name:"Easton")]),
-                   
-                   Parent(name: "Marcela",
-                   children:[Parent(name:"sam"), Parent(name:"Melissa"),
-                             Parent(name:"Melany")])]
     var body: some View {
-        VStack(spacing: 20.0){
+        
+        VStack(spacing: 20){
             Text("List")
-            Text("Children")
-            Text("Never give up in my life is only my and my mind")
-            List(parents, children: \.children) {parent in
-                Text("\(parent.name)")
+            Text("List Style Automatic")
+            Text("you can start your dreams, never give up brooo")
+                .background(.green)
+            
+            List{
+                Text("What woould you like to learn")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Label("Learn Geography",systemImage: "singpost.right.fill")
+                Label("Learn Music",systemImage: "doc.richtext")
+                Label("Learn Photography",systemImage: "camera.aperture")
+                Label("Learn art",systemImage: "paintpalette.fill")
+                    .font(Font.system(.title3).weight(.bold))
+                Label("Learn physics",systemImage: "atom")
+                Label("Learn 3D",systemImage: "cube.transparent")
+                Label("Learn Hair Styling",systemImage: "comb.fill")
             }
+            .accentColor(.green)
+            .listStyle(.automatic)
         }
         .font(.title)
     }
 }
         #Preview{
-            List_WithChildren()
+            List_ListStyle_Automatic()
         }
 
 

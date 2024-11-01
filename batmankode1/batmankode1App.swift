@@ -11,7 +11,7 @@ import SwiftUI
 struct batmankode1App: App {
     var body: some Scene {
         WindowGroup {
-            List_WithChildren()
+            List_ListStyle_Automatic()
         }
     }
 }
