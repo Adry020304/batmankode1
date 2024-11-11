@@ -7,36 +7,37 @@
 
 import SwiftUI
         
-struct List_SafeAreaInsets: View {
+struct ToDoItem: Identifiable{
+    let id = UUID ()
+    var task = ""
+    var priority = false
+    var done = false
+}
+struct List_BindingWithin: View {
+    @State  private var items = [ToDoItem(task: "Get Milk", done: false),
+                                 ToDoItem(task: "Wash car", done: false),
+                                 ToDoItem(task:  "Cut grass", done: false)]
+    
     var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: 20.0){
             Text("List")
-            Text("SafeAreaInsets")
-            
-            List {
-                ForEach(1..<21) { number in
-                    Text("\(number)")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(.green, in: RoundedRectangle(cornerRadius: 10))
+            Text("Project Code")
+            Text("This is the project very heasy im working")
+                .background(.yellow)
+            List($items) { $item in
+                HStack {
+                    TextField("task",text: $item.task)
+                    Toggle("Done", isOn: $item.done)
+                        .labelsHidden()
                 }
             }
-            .listStyle(.plain)
-            .safeAreaInset(edge: .bottom) {
-                VStack{
-                    Divider()
-                    Text("Total: 20")
-                        .foregroundStyle(.secondary)
-                }
-                .background(.bar)
-            }
-         }
+        }
         .font(.title)
     }
 }
-            
+
 #Preview {
-    List_SafeAreaInsets()
+    List_BindingWithin()
      }
 
 
