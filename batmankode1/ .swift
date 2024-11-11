@@ -7,33 +7,36 @@
 
 import SwiftUI
         
-struct List_HeadersProminence: View {
+struct List_SafeAreaInsets: View {
     var body: some View {
-        List {
-            Section {
-                Text("you can start you project in the xcode ")
-                    .listRowBackground(Color.green)
-            } header: {
-                Text("This is my project im busy ")
-            }
-            .headerProminence(.standard)
+        VStack(spacing: 0){
+            Text("List")
+            Text("SafeAreaInsets")
             
-            Section {
-                Text("This is my computer im happy for my project")
-                    .listRowBackground(Color.green)
-            } header: {
-                Text("the big project in my mind")
+            List {
+                ForEach(1..<21) { number in
+                    Text("\(number)")
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(.green, in: RoundedRectangle(cornerRadius: 10))
+                }
             }
-            
-            .headerProminence(.increased)
-        }
-        
+            .listStyle(.plain)
+            .safeAreaInset(edge: .bottom) {
+                VStack{
+                    Divider()
+                    Text("Total: 20")
+                        .foregroundStyle(.secondary)
+                }
+                .background(.bar)
+            }
+         }
         .font(.title)
     }
 }
-
+            
 #Preview {
-    List_HeadersProminence()
+    List_SafeAreaInsets()
      }
 
 
