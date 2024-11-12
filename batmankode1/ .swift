@@ -7,37 +7,32 @@
 
 import SwiftUI
         
-struct ToDoItem: Identifiable{
-    let id = UUID ()
-    var task = ""
-    var priority = false
-    var done = false
-}
-struct List_BindingWithin: View {
-    @State  private var items = [ToDoItem(task: "Get Milk", done: false),
-                                 ToDoItem(task: "Wash car", done: false),
-                                 ToDoItem(task:  "Cut grass", done: false)]
-    
+struct List_RowSpacing: View{
     var body: some View {
-        VStack(spacing: 20.0){
-            Text("List")
-            Text("Project Code")
-            Text("This is the project very heasy im working")
-                .background(.yellow)
-            List($items) { $item in
-                HStack {
-                    TextField("task",text: $item.task)
-                    Toggle("Done", isOn: $item.done)
-                        .labelsHidden()
-                }
+        VStack(spacing: 0){
+            
+            List {
+                Text("Row 1")
+                Text("Row 2")
+                    .listRowBackground(Color.red)
+                Text("Row 3")
+                    .listRowBackground(Color.blue)
+                Text("Row 4")
+                    .listRowBackground(Color.green)
+                Text("Row 5")
+                    .listRowBackground(Color.pink)
             }
+            
+            .listStyle(.plain)
+            .listRowSpacing(100)
         }
+        
         .font(.title)
     }
 }
 
 #Preview {
-    List_BindingWithin()
+    List_RowSpacing()
      }
 
 
